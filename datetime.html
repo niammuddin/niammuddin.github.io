@@ -1,16 +1,28 @@
-
 <html>
 <head>
 </head>
 <body>
 <p id="updateAssignment">
-        <code><span></span></code>
+        <code><span id="datetime"></span></code>
         <br>
         <br>
         <button>
             <a style="text-decoration: none;" href="?update=true">Generate</a>
         </button>
         </p>
+<script>
+            var now = new Date();
+            function zerofill(i) {
+                return (i < 10 ? '0' : '') + i;
+            }
+            var tahun = now.getFullYear().toString(); // 2011
+            var bulan = zerofill(now.getMonth()+1).toString(); // JS months are 0-based, so +1 and pad with 0's
+            var tanggal = zerofill(now.getDate()).toString(); // pad with a 0
+            var jam = now.getHours().toString();
+            var menit = now.getMinutes().toString();
+            var detik = now.getMilliseconds().toString();
+    document.getElementById("datetime").innerHTML = tanggal+"/"+bulan+"/"+tahun+" "+jam+":"+menit+":"+detik;
+</script>
 
 <script>
     /*! jQuery v2.1.1 | (c) 2005, 2014 jQuery Foundation, Inc. | jquery.org/license */
@@ -21,25 +33,19 @@
 
     <script>
     $('#updateAssignment a').on('click', function(event){
-                event.preventDefault();
-
+            event.preventDefault();
             var now = new Date();
-            
             function zerofill(i) {
                 return (i < 10 ? '0' : '') + i;
             }
-        
             var tahun = now.getFullYear().toString(); // 2011
             var bulan = zerofill(now.getMonth()+1).toString(); // JS months are 0-based, so +1 and pad with 0's
             var tanggal = zerofill(now.getDate()).toString(); // pad with a 0
             var jam = now.getHours().toString();
             var menit = now.getMinutes().toString();
             var detik = now.getMilliseconds().toString();
-            
             // console.log("--", tanggal+"/"+bulan+"/"+tahun+"/"+jam+":"+menit+":"+detik);
-            // document.getElementById("date_time").innerHTML = tanggal+"/"+bulan+"/"+tahun+"/"+jam+":"+menit+":"+detik;
-
-                $('#updateAssignment span').text(tanggal+"/"+bulan+"/"+tahun+" "+jam+":"+menit+":"+detik);
+            $('#updateAssignment span').text(tanggal+"/"+bulan+"/"+tahun+" "+jam+":"+menit+":"+detik);
             });
     </script>
 </body>
